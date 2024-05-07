@@ -10,6 +10,9 @@ RUN apt update && apt install lld clang -y
 # Copy all the files from our working env to the docker image. `COPY <src> <dest>`
 COPY . .
 
+# Enable offline mode for sqlx to check the metadata instead of my live DB
+ENV SQLX_OFFLINE true
+
 # Build that shiz. --release to make it fast
 RUN cargo build --release
 
